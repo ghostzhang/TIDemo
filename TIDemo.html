@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Language" content="utf-8" />
+		<title id="app-title"></title>
+		<link href="css/kickstart.css" rel="stylesheet" type="text/css"/>
+		<link href="css/sample.css" rel="stylesheet" type="text/css"/>
+		<script type="text/javascript" src="lib/jquery/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="lib/air/AIRAliases.js"></script>
+		<script type="application/x-shockwave-flash" src="lib/air/applicationupdater_ui.swf"></script>
+		<script type="text/javascript" src="lib/air/AIRMenuBuilder.js"></script>
+		<script type="text/javascript" src="lib/KickStart/kickstart.js"></script>
+		<script type="text/javascript" src="lib/KickStart/prettify.js"></script>
+		<script type="text/javascript" src="lib/air/template.js"></script>
+		<script type="text/javascript" src="lib/air/main.js"></script>
+	</head>
+	<body onload="appMain.loadApp();" onDragOver="doOver(event);" onDrop="doDrop(event);">
+		<div id="hint-box">
+		</div>
+		<div id="app-cont">
+			<div id="config-box">
+				<button class="small" type="button" id="bt-open-modefile">打开模板文件</button>
+				<button class="small" type="button" id="bt-open-help">说明</button>
+			</div>
+			<hr/>
+			<div id="setup-box">
+				<form class="vertical">
+					<div class="col_12 visible">
+						<div class="inner">
+							<p>
+								在模板文件中加入以下格式的设置即可使用自定义的变量名：
+							</p>
+							<pre>&lt;!-- ::config::
+@name@:text(站点名)|CSS森林;
+@link@:a(首页链接)|CSS森林,http://www.cssforest.org/blog/,true;
+--&gt;</pre>
+							<p>
+								格式为：@变量名@:变量类型(说明文本)|默认值;
+							</p>
+							<ul>
+								<li>变量名以“@”包裹</li>
+								<li>变量名后以“:”分隔，说明文本以“()”包裹</li>
+								<li>说明后本后以“|”分隔，可设置默认值<br />链接的默认值设置顺序（以“,”分隔）：链接文本默认值,链接地址默认值,新窗口打开</li>
+								<li>以“;”结束</li>
+								<li>目前支持的变量类型：
+									<ul>
+										<li>text</li>
+										<li>a</li>
+										<li>textarea</li>
+										<li>html</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div id="op-bar">
+			</div>
+		</div>
+		<script src="lib/air/UIUpdater.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
