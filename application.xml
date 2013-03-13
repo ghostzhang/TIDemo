@@ -23,7 +23,7 @@
 	<name>TIDemo</name>
 
 	<!-- An application version designator (such as "v1", "2.5", or "Alpha 1"). Required. -->
-	<version>1.0</version>
+	<version>2.0.20130313</version>
 
 	<!-- Description, displayed in the AIR application installer. Optional. -->
 	<description/>
@@ -58,7 +58,7 @@
 		<resizable>true</resizable>
 
 		<!-- The window's initial width. Optional. -->
-		<width>500</width>
+		<width>700</width>
 
 		<!-- The window's initial height. Optional. -->
 		<height>600</height>

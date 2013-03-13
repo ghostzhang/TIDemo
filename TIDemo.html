@@ -5,12 +5,12 @@
 		<meta http-equiv="Content-Language" content="utf-8" />
 		<title id="app-title"></title>
 		<link href="css/sample.css" rel="stylesheet" type="text/css"/>
-		<script type="text/javascript" src="lib/jquery/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="lib/air/AIRAliases.js"></script>
-		<script type="application/x-shockwave-flash" src="lib/air/applicationupdater_ui.swf"></script>
 		<script type="text/javascript" src="lib/air/AIRMenuBuilder.js"></script>
 		<script type="text/javascript" src="lib/air/template.js"></script>
 		<script type="text/javascript" src="lib/air/main.js"></script>
+		<script type="text/javascript" src="lib/air/updater.js"></script>
 	</head>
 	<body onload="appMain.loadApp();" onDragOver="doOver(event);" onDrop="doDrop(event);">
 		<div id="hint-box">
@@ -29,12 +29,20 @@
 								在模板文件中加入以下格式的设置即可使用自定义的变量名：
 							</p>
 							<pre>&lt;!-- ::config::
-@name@:text(站点名)|CSS森林;
+@title@:text(站点名)|CSS森林;
 @link@:a(首页链接)|CSS森林,http://www.cssforest.org/blog/,true;
 --&gt;</pre>
 							<p>
 								格式为：@变量名@:变量类型(说明文本)|默认值;
 							</p>
+							<p>
+								在内容区将定义的@变量名@加入即可
+							</p>
+							<pre>&lt;title&gt;@title@&lt;/title&gt;
+@link@</pre>
+<p>将解析为</p>
+							<pre>&lt;title&gt;CSS森林&lt;/title&gt;
+&lt;a href="http://www.cssforest.org/blog/" target="_blank"&gt;CSS森林&lt;/a&gt;</pre>
 							<ul>
 								<li>变量名以“@”包裹</li>
 								<li>变量名后以“:”分隔，说明文本以“()”包裹</li>
@@ -44,6 +52,7 @@
 									<ul>
 										<li>text</li>
 										<li>a</li>
+										<li>link</li>
 										<li>textarea</li>
 										<li>html</li>
 									</ul>
@@ -56,6 +65,5 @@
 			<div id="op-bar">
 			</div>
 		</div>
-		<script src="lib/air/UIUpdater.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>
