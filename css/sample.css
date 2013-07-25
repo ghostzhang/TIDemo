@@ -9,9 +9,14 @@ html,body{margin:0;padding:0;}
 .vertical pre{border:1px solid #DDDDDD;background-color:#FFFFFF;color:#880000;padding:5px;font-size:14px;}
 hr{margin:4px 0;}
 .box{margin:5px 0;}
-.box label{display:block;mqrgin-bottom:2px;color:#880000;}
+.box label{display:block;margin-bottom:2px;color:#880000;}
 .box input[type="text"],.box textarea{width:100%;padding:2px;margin-bottom:4px;}
 .box textarea{height:4.5em;vertical-align:top;}
 #update_box{position:absolute;top:20%;left:50%;z-index:1001;width:60%;padding:4px 12px;min-height:60px;margin-left:-30%;background-color:#FFFFFF;border:1px solid #000000;-webkit-box-shadow:0 2px 6px rgba(0,0,0,0.27),0 0 40px rgba(0,0,0,0.06) inset;font-size:12px;word-wrap:break-word;word-break:normal;}
 #update_box textarea{width:100%;border:0 none;}
-#alphaBox{position:absolute;left:0;top:0;z-index:1000;width:100%;height:100%;background:#000;opacity:0.6;}
+#floatBoxBg{display:none;width:100%;height:100%;background:#000;position:absolute;top:0;left:0;opacity:0.4;}
+.floatBox{border:#666 5px solid;width:300px;position:absolute;top:50%;left:50%;margin-top:-150px;margin-left:-155px;padding:0;}
+.floatBox .title{height:23px;padding:7px 10px 0;background:#333;color:#fff;}
+.floatBox .title h4{float:left;padding:0;margin:0;font-size:14px;line-height:16px;}
+.floatBox .title span{float:right;cursor:pointer;}
+.floatBox .content{padding:10px;background:#fff;}
