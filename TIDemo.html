@@ -1,105 +1,110 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta http-equiv="Content-Language" content="utf-8" />
-		<title id="app-title"></title>
-		<link href="css/sample.css" rel="stylesheet" type="text/css"/>
-		<script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="lib/air/AIRAliases.js"></script>
-		<script type="text/javascript" src="lib/air/AIRMenuBuilder.js"></script>
-		<script type="text/javascript" src="lib/air/template.js"></script>
-		<script type="text/javascript" src="lib/air/main.js"></script>
-		<script type="text/javascript" src="lib/air/updater.js"></script>
-	</head>
-	<body onload="appMain.loadApp();" onDragOver="doOver(event);" onDrop="doDrop(event);">
-		<div id="hint-box">
-		</div>
-		<div id="app-cont">
-			<div id="config-box">
-				<button class="small" type="button" id="bt-open-modefile">打开模板文件</button>
-				<button class="small" type="button" id="bt-open-help">说明</button>
-				<div class="set-op-box">
-		            输入编码：
-		            <label>
-		                <input type="radio" name="radio_charset_in" id="set_in_charset_utf8" checked="checked" />UTF8
-		            </label>
-		            <label>
-		                <input type="radio" name="radio_charset_in" id="set_in_charset_gb2312" />GB2312
-		            </label>
-	            </div>
-			</div>
-			<hr/>
-			<div id="setup-box">
-				<form class="vertical">
-					<div class="col_12 visible">
-						<div class="inner">
-							<h2>
-								例子
-							</h2>
-							<pre>&lt;!-- ::config::utf-8::
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="utf-8" />
+    <title id="app-title"></title>
+    <link href="css/sample.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="lib/air/AIRAliases.js"></script>
+    <script type="text/javascript" src="lib/air/AIRMenuBuilder.js"></script>
+    <script type="text/javascript" src="lib/air/template.js"></script>
+    <script type="text/javascript" src="lib/air/main.js"></script>
+    <script type="text/javascript" src="lib/air/updater.js"></script>
+</head>
+
+<body onload="appMain.loadApp();" onDragOver="doOver(event);" onDrop="doDrop(event);">
+    <div id="hint-box">
+    </div>
+    <div id="app-cont">
+        <div id="config-box">
+            <button class="small" type="button" id="bt-open-modefile">打开模板文件</button>
+            <button class="small" type="button" id="bt-open-help">说明</button>
+            <div class="set-op-box">
+                输入编码：
+                <label>
+                    <input type="radio" name="radio_charset_in" id="set_in_charset_utf8" checked="checked" />UTF8
+                </label>
+                <label>
+                    <input type="radio" name="radio_charset_in" id="set_in_charset_gb2312" />GB2312
+                </label>
+            </div>
+        </div>
+        <hr/>
+        <div id="setup-box">
+            <form class="vertical">
+                <div class="col_12 visible">
+                    <div class="inner">
+                        <h2>例子</h2>
+                        <pre>&lt;!-- ::config::utf-8::
 @title@:text(站点名)|CSS森林;
 @link@:a(首页链接)|CSS森林,http://www.cssforest.org/blog/,true;
 --&gt;
 &lt;title&gt;@title@&lt;/title&gt;
 @link@</pre>
-<p>将上面的内容保存为文件，拖入TIDemo，将解析为</p>
-							<pre>&lt;title&gt;CSS森林&lt;/title&gt;
+                        <p>将上面的内容保存为文件，拖入TIDemo，将解析为</p>
+                        <pre>&lt;title&gt;CSS森林&lt;/title&gt;
 &lt;a href="http://www.cssforest.org/blog/" target="_blank"&gt;CSS森林&lt;/a&gt;</pre>
-							<h2>说明</h2>
-							<h3>基本格式</h3>
-							<pre>&lt;!-- ::config::utf-8::
+                        <h2>说明</h2>
+                        <h3>基本格式</h3>
+                        <pre>&lt;!-- ::config::utf-8::
 设置内容
 --&gt;</pre>
-							<p>为基本格式，其中『utf-8』为输出编码，如果要使用跟文件一样的编码输出，可以不加，即：</p>
-							<pre>&lt;!-- ::config::
+                        <p>为基本格式，其中『utf-8』为输出编码，如果要使用跟文件一样的编码输出，可以不加，即：</p>
+                        <pre>&lt;!-- ::config::
 设置内容
 --&gt;</pre>
-							<p>
-								<strong>设置内容可以为空，但模板文件中必须有以上的基本格式，否则无法读取模板文件。</strong>
-							</p>
-							<p>
-								设置格式为：@变量名@:变量类型(说明文本)|默认值;
-							</p>
-							<ol>
-								<li>变量名以『@』包裹</li>
-								<li>变量名不能包含空格或制表符</li>
-								<li>变量名后以『:』分隔，紧跟着变量类型</li>
-								<li>说明文本以『()』包裹</li>
-								<li>说明文本后加『|』分隔，可设置默认值</li>
-								<li>以『;』结束</li>
-							</ol>
-							<h3>目前支持的变量类型</h3>
-							<dl>
-								<dt>text</dt><dd>单行输入框</dd>
-								<dt>a 或 link</dt><dd>链接的默认值设置顺序（以“,”分隔），顺序为：链接文本默认值,链接地址默认值,新窗口打开</dd>
-								<dt>textarea 或 html</dt><dd>多行输入框</dd>
-							</dl>
-							<h3>循环输出</h3>
-							<pre>&lt;!-- ::loop(商品列表)::10::
+                        <p>
+                            <strong>设置内容可以为空，但模板文件中必须有以上的基本格式，否则无法读取模板文件。</strong>
+                        </p>
+                        <p>
+                            设置格式为：@变量名@:变量类型(说明文本)|默认值;
+                        </p>
+                        <ol>
+                            <li>变量名以『@』包裹</li>
+                            <li>变量名不能包含空格或制表符</li>
+                            <li>变量名后以『:』分隔，紧跟着变量类型</li>
+                            <li>说明文本以『()』包裹</li>
+                            <li>说明文本后加『|』分隔，可设置默认值</li>
+                            <li>以『;』结束</li>
+                        </ol>
+                        <h3>目前支持的变量类型</h3>
+                        <dl>
+                            <dt>text</dt>
+                            <dd>单行输入框</dd>
+                            <dt>a 或 link</dt>
+                            <dd>链接的默认值设置顺序（以“,”分隔），顺序为：链接文本默认值,链接地址默认值,新窗口打开</dd>
+                            <dt>textarea 或 html</dt>
+                            <dd>多行输入框</dd>
+                        </dl>
+                        <h3>循环输出</h3>
+                        <pre>&lt;!-- ::loop(商品列表)::auto::
 设置内容
 --&gt;
 循环模板内容
 &lt;!-- ::loop end:: --&gt;</pre>
-							<p>
-								设置格式为：::loop(说明信息)::循环次数::
-							</p>
-							<ol>
-								<li>关键字为『loop』</li>
-								<li>说明文本以『()』包裹</li>
-								<li>循环次数只能为正整数</li>
-								<li>以『&lt;!-- ::loop end:: --&gt;』结束</li>
-							</ol>
-							<h3>导入数据文件</h3>
-							<dl>
-								<dt>创建数据文件</dt>
-								<dd>使用excel建立数据文件，第一行为变量名。然后导出为txt格式文件，与模板文件放在同个目录下。导出的内容类似：</dd>
-								<dd><pre>valueA	valueB	valueC
+                        <p>
+                            设置格式为：::loop(说明信息)::循环次数::
+                        </p>
+                        <ol>
+                            <li>关键字为『loop』</li>
+                            <li>说明文本以『()』包裹</li>
+                            <li>循环次数只能为正整数或『auto』关键字</li>
+                            <li>循环次数为『auto』时，将根据数据文件行数进行循环，自动过滤空行</li>
+                            <li>以『&lt;!-- ::loop end:: --&gt;』结束</li>
+                        </ol>
+                        <h3>导入数据文件</h3>
+                        <dl>
+                            <dt>创建数据文件</dt>
+                            <dd>使用excel建立数据文件，第一行为变量名。然后导出为txt格式文件，与模板文件放在同个目录下。导出的内容类似：</dd>
+                            <dd><pre>valueA	valueB	valueC
 A1	A2	A3
-B1	B2	B3</pre></dd>
-								<dt>链接数据文件</dt>
-								<dd>在循环定义的设置区使用变量类型『db』</dd>
-								<dd><pre>&lt;!-- ::loop(商品列表)::3::
+B1	B2	B3</pre>
+                            </dd>
+                            <dt>链接数据文件</dt>
+                            <dd>在循环定义的设置区使用变量类型『db』</dd>
+                            <dd><pre>&lt;!-- ::loop(商品列表)::3::
 @db@:db|数据文件.txt;
 @valueA@:text(变量A);
 @valueB@:text(变量B);
@@ -108,9 +113,10 @@ B1	B2	B3</pre></dd>
 这里输出变量A的内容：@valueA@；
 这里输出变量B的内容：@valueB@；
 这里输出变量C的内容：@valueC@；
-&lt;!-- ::loop end:: --&gt;</pre></dd>
-								<dt>结果：</dt>
-								<dd><pre>
+&lt;!-- ::loop end:: --&gt;</pre>
+                            </dd>
+                            <dt>结果：</dt>
+                            <dd><pre>
 这里输出变量A的内容：A1；
 这里输出变量B的内容：A2；
 这里输出变量C的内容：A3；
@@ -120,14 +126,16 @@ B1	B2	B3</pre></dd>
 这里输出变量A的内容：；
 这里输出变量B的内容：；
 这里输出变量C的内容：；
-</pre></dd>
-							</dl>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div id="op-bar">
-			</div>
-		</div>
-	</body>
+</pre>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="op-bar">
+        </div>
+    </div>
+</body>
+
 </html>
