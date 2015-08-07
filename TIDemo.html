@@ -6,7 +6,8 @@
     <meta http-equiv="Content-Language" content="utf-8" />
     <title id="app-title"></title>
     <link href="css/sample.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="lib/underscore-min.js"></script>
     <script type="text/javascript" src="lib/air/AIRAliases.js"></script>
     <script type="text/javascript" src="lib/air/AIRMenuBuilder.js"></script>
     <script type="text/javascript" src="lib/air/template.js"></script>
@@ -52,12 +53,13 @@
 设置内容
 --&gt;</pre>
                         <p>为基本格式。可选项有：</p>
-                        <pre>&lt;!-- ::config::utf-8::autosave::
+                        <pre>&lt;!-- ::config::utf-8::AUTOSAVE::CONDITION::
 设置内容
 --&gt;</pre>
                         <ol>
-                            <li>输出编码，如果要使用跟文件一样的编码输出，可以不加</li>
-                            <li>自动保存文件到桌面</li>
+                            <li>utf-8：输出编码，如果要使用跟文件一样的编码输出，可以不加</li>
+                            <li>autosave:：启用自动保存文件</li>
+                            <li>CONDITION:：启用数据筛选</li>
                         </ol>
                         <p>
                             设置格式为：@变量名@:变量类型(说明文本)|默认值;
@@ -73,8 +75,18 @@
                         <p>
                             <strong>设置内容可以为空，但模板文件中必须有以上的基本格式，否则无法读取模板文件。</strong>
                         </p>
-                        <h3>目前支持的变量类型</h3>
+                        <h3>当前支持的设置项</h3>
+                        <pre>&lt;!-- ::config::utf-8::
+@savedir@:set|C:\Desktop\;
+--&gt;</pre>
                         <dl>
+                            <dt>savedir</dt>
+                            <dd>输出文件路径</dd>
+                        </dl>
+                        <h3>当前支持的变量类型</h3>
+                        <dl>
+                            <dt>set</dt>
+                            <dd>设置项目</dd>
                             <dt>text</dt>
                             <dd>单行输入框</dd>
                             <dt>a 或 link</dt>
@@ -82,7 +94,12 @@
                             <dt>textarea 或 html</dt>
                             <dd>多行输入框</dd>
                         </dl>
-                        <h3>循环输出</h3>
+                        <h3>模板文件命名</h3>
+                        <ol>
+                            <li>输出的文件会保存到模板文件目录下</li>
+                            <li>如果模板文件以"tidemo_"开头命名，输出的新文件会自动去掉"tidemo_"，得到最终的文件名</li>
+                        </ol>
+                        <h2>循环输出</h2>
                         <pre>&lt;!-- ::loop(商品列表)::auto::
 设置内容
 --&gt;
@@ -107,9 +124,9 @@ A1	A2	A3
 B1	B2	B3</pre>
                             </dd>
                             <dt>链接数据文件</dt>
-                            <dd>在循环定义的设置区使用变量类型『db』</dd>
+                            <dd>在循环定义设置变量『DB』,变量类型为『set』,</dd>
                             <dd><pre>&lt;!-- ::loop(商品列表)::3::
-@db@:db|数据文件.txt;
+@DB@:set|数据文件.txt;
 @valueA@:text(变量A);
 @valueB@:text(变量B);
 @valueC@:text(变量C);
@@ -130,6 +147,38 @@ B1	B2	B3</pre>
 这里输出变量A的内容：；
 这里输出变量B的内容：；
 这里输出变量C的内容：；
+</pre>
+                            </dd>
+                        </dl>
+                        <h3>数据筛选</h3>
+                        <dl>
+                            <dt>创建数据文件</dt>
+                            <dd>使用excel建立数据文件，第一行为变量名。然后导出为txt格式文件，与模板文件放在同个目录下。导出的内容类似：</dd>
+                            <dd><pre>valueA	valueB	valueC
+A1	B1	C1
+A2	B1	C2
+A3	B3	C2</pre>
+                            </dd>
+                            <dt>链接数据文件，设置筛选条件</dt>
+                            <dd>在循环定义设置变量『DB』,变量类型为『set』,</dd>
+                            <dd>设置变量『IF』,变量类型为『set』,</dd>
+                            <dd><pre>&lt;!-- ::loop(商品列表)::auto::
+@DB@:set|数据文件.txt;
+@IF@:set(valueA)|A2;
+@valueA@:text(变量A);
+@valueB@:text(变量B);
+@valueC@:text(变量C);
+--&gt;
+这里输出变量A的内容：@valueA@；
+这里输出变量B的内容：@valueB@；
+这里输出变量C的内容：@valueC@；
+&lt;!-- ::loop end:: --&gt;</pre>
+                            </dd>
+                            <dt>结果：</dt>
+                            <dd><pre>
+这里输出变量A的内容：A2；
+这里输出变量B的内容：B1；
+这里输出变量C的内容：C2；
 </pre>
                             </dd>
                         </dl>
