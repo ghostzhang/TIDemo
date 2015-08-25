@@ -47,8 +47,8 @@
                         <p>将上面的内容保存为文件，拖入TIDemo，将解析为</p>
                         <pre>&lt;title&gt;CSS森林&lt;/title&gt;
 &lt;a href="http://www.cssforest.org/blog/" target="_blank"&gt;CSS森林&lt;/a&gt;</pre>
-                        <h2>说明</h2>
-                        <h3>基本格式</h3>
+                        <h2>基本功能</h2>
+                        <h3>格式</h3>
                         <pre>&lt;!-- ::config::
 设置内容
 --&gt;</pre>
@@ -93,13 +93,16 @@
                             <dd>链接的默认值设置顺序（以“,”分隔），顺序为：链接文本默认值,链接地址默认值,新窗口打开</dd>
                             <dt>textarea 或 html</dt>
                             <dd>多行输入框</dd>
+                            <dt>qr</dt>
+                            <dd>输出二维码</dd>
                         </dl>
                         <h3>模板文件命名</h3>
                         <ol>
                             <li>输出的文件会保存到模板文件目录下</li>
                             <li>如果模板文件以"tidemo_"开头命名，输出的新文件会自动去掉"tidemo_"，得到最终的文件名</li>
                         </ol>
-                        <h2>循环输出</h2>
+                        <h2>高级功能</h2>
+                        <h3>循环输出</h3>
                         <pre>&lt;!-- ::loop(商品列表)::auto::
 设置内容
 --&gt;
@@ -179,6 +182,42 @@ A3	B3	C2</pre>
 这里输出变量A的内容：A2；
 这里输出变量B的内容：B1；
 这里输出变量C的内容：C2；
+</pre>
+                            </dd>
+                        </dl>
+                        <h3>二维码解析</h3>
+                        <dl>
+                            <dt>创建数据文件</dt>
+                            <dd>使用excel建立数据文件，第一行为变量名。然后导出为txt格式文件，与模板文件放在同个目录下。导出的内容类似：</dd>
+                            <dd><pre>valueA
+ghostzhang</pre>
+                            </dd>
+                            <dt>设置二维码</dt>
+                            <dd>设置变量为『QR』,变量类型为『set』，变量类型为『qr』</dd>
+                            <dd><pre>@QR@:set(bg,w,m,el)|ffffff,100,10,h;
+
+包含设置项：
+bg:  // 背景颜色  bg=颜色代码，例如：bg=ffffff
+fg:  // 前景颜色  fg=颜色代码，例如：fg=cc0000
+gc:  // 渐变颜色  gc=颜色代码，例如：gc=cc00000
+el:  // 纠错等级  el可用值：h\q\m\l，例如：el=h
+w:  // 尺寸大小   w=数值（像素），例如：w=300
+m:  // 静区（外边距）    m=数值（像素），例如：m=30
+pt:  // 定位点颜色（外框） pt=颜色代码，例如：pt=00ff00
+inpt:  // 定位点颜色（内点）   inpt=颜色代码，例如：inpt=000000
+logo:  // logo图片  logo=图片地址</pre></dd>
+                            <dd></dd>
+                            <dd><pre>&lt;!-- ::loop(商品列表)::
+@DB@:set|数据文件.txt;
+@QR@:set(w,m)|100,10;
+@valueA@:qr(变量A);
+--&gt;
+这里输出二维码的内容：&lt;img src="@valueA@" /&gt;
+&lt;!-- ::loop end:: --&gt;</pre>
+                            </dd>
+                            <dt>结果：</dt>
+                            <dd><pre>
+这里输出二维码的内容：<img src="http://qr.liantu.com/api.php?text=ghostzhang&w=100&m=10" />；
 </pre>
                             </dd>
                         </dl>
