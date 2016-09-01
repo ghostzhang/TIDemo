@@ -184,16 +184,28 @@
 
 	@QR@:set(bg,w,m,el)|ffffff,100,10,h;
 
-	包含设置项：
-	bg:  // 背景颜色  bg=颜色代码，例如：bg=ffffff
-	fg:  // 前景颜色  fg=颜色代码，例如：fg=cc0000
-	gc:  // 渐变颜色  gc=颜色代码，例如：gc=cc00000
-	el:  // 纠错等级  el可用值：h\q\m\l，例如：el=h
-	w:  // 尺寸大小   w=数值（像素），例如：w=300
-	m:  // 静区（外边距）    m=数值（像素），例如：m=30
-	pt:  // 定位点颜色（外框） pt=颜色代码，例如：pt=00ff00
-	inpt:  // 定位点颜色（内点）   inpt=颜色代码，例如：inpt=000000
-	logo:  // logo图片  logo=图片地址
+包含设置项：
+
+<dl>
+	<dt>bg</dt>
+		<dd>背景颜色  bg=颜色代码，例如：bg=ffffff</dd>
+	<dt>fg</dt>
+		<dd>前景颜色  fg=颜色代码，例如：fg=cc0000</dd>
+	<dt>gc</dt>
+		<dd>渐变颜色  gc=颜色代码，例如：gc=cc00000</dd>
+	<dt>el</dt>
+		<dd>纠错等级  el可用值：h\q\m\l，例如：el=h</dd>
+	<dt>w</dt>
+		<dd>尺寸大小   w=数值（像素），例如：w=300</dd>
+	<dt>m</dt>
+		<dd>静区（外边距）    m=数值（像素），例如：m=30</dd>
+	<dt>pt</dt>
+		<dd>定位点颜色（外框） pt=颜色代码，例如：pt=00ff00</dd>
+	<dt>inpt</dt>
+		<dd>定位点颜色（内点）   inpt=颜色代码，例如：inpt=000000</dd>
+	<dt>logo</dt>
+		<dd>logo图片  logo=图片地址</dd>
+</dl>
 
 	<!-- ::loop(商品列表)::
 	@DB@:set|数据文件.txt;
@@ -202,3 +214,7 @@
 	-->
 	这里输出二维码的内容：<img src="@valueA@" />
 	<!-- ::loop end:: -->
+
+结果：
+
+这里输出二维码的内容：![](http://qr.liantu.com/api.php?text=ghostzhang&w=100&m=10)￼；
