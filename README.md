@@ -98,6 +98,23 @@
 4. 循环次数为『`auto`』时，将根据数据文件行数进行循环，自动过滤空行
 5. 以『`<!-- ::loop end:: -->`』结束
 
+#### 当前支持的设置项
+
+	<!-- ::loop(商品列表)::auto::
+	@DB@:set|数据文件.txt;
+	@IF@:set(变量名)|变量值;
+	@REPLACE@:set(start)|"正则表达式";
+	-->
+
+<dl>
+	<dt>DB</dt>
+		<dd>设置外部连接的数据文件路</dd>
+	<dt>IF</dt>
+		<dd>当数据表中变量名为变量值的时候</dd>
+	<dt> REPLACE</dt>
+		<dd>删除循环填充数据之后的多余字符，只能删除循环体开始（start）或结束（end）位置的字符</dd>
+</dl> 
+
 ### 导入数据文件
 
 #### 创建数据文件
@@ -217,4 +234,4 @@
 
 结果：
 
-这里输出二维码的内容：![](http://qr.liantu.com/api.php?text=ghostzhang&w=100&m=10)￼；
+这里输出二维码的内容：![](http://qr.liantu.com/api.php?text=ghostzhang&w=100&m=10)；
