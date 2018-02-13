@@ -1,0 +1,17 @@
+<!-- ::config::
+
+@title@:text|二维码演示;
+
+-->
+<title>@title@</title>
+<!-- ::loop(商品列表)::
+@db@:set|医生名称二维码.txt;
+@qr@:set(w,m)|300,10;
+@valueA@:text(医生名称);
+@valueB@:text(科室);
+@valueC@:qr(二维码);
+-->
+<p>医生名称:@valueA@；
+科室:@valueB@；
+二维码:<img src="@valueC@" />；</p>
+<!-- ::loop end:: -->

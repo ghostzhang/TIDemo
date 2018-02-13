@@ -1,0 +1,18 @@
+<!-- ::config::CONDITION::
+
+@title@:text(站点名)|CSS森林;
+@link@:a(首页链接)|CSS森林,http://www.cssforest.org/blog/,true;
+-->
+<title>@title@</title>
+@link@
+<!-- ::loop(商品列表)::auto::
+@db@:set|城市列表.txt;
+@if@:set(valueC)|深圳;
+@valueA@:text(编号);
+@valueB@:text(商户名称);
+@valueC@:text(城市);
+-->
+<p>编号:@valueA@；
+商户名称:@valueB@；
+城市:@valueC@；</p>
+<!-- ::loop end:: -->

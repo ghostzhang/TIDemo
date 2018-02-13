@@ -1,0 +1,18 @@
+<!-- ::config::
+@savedir@:set|/Users/ghostzhang/Desktop/;
+
+@title@:text|二维码演示，指定保存位置;
+
+-->
+<title>@title@</title>
+<!-- ::loop(商品列表)::
+@db@:set|城市列表.txt;
+@qr@:set(w,m)|300,10;
+@valueA@:text(编号);
+@valueB@:text(商户名称);
+@valueC@:qr(城市名称);
+-->
+<p>编号:@valueA@；
+商户名称:@valueB@；
+    <img src="@valueC@" /></p>
+<!-- ::loop end:: -->

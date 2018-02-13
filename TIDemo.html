@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Language" content="utf-8" />
     <title id="app-title"></title>
     <link href="css/sample.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="lib/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="lib/zepto.min.js"></script>
     <script type="text/javascript" src="lib/underscore-min.js"></script>
     <script type="text/javascript" src="lib/air/AIRAliases.js"></script>
     <script type="text/javascript" src="lib/air/AIRMenuBuilder.js"></script>
@@ -23,14 +23,10 @@
             <button class="small" type="button" id="bt-open-modefile">打开模板文件</button>
             <button class="small" type="button" id="bt-open-help">说明</button>
             <div class="set-op-box">
-                输入编码：
-                <label>
-                    <input type="radio" name="radio_charset_in" id="set_in_charset_utf8" checked="checked" />UTF8
-                </label>
-                <label>
-                    <input type="radio" name="radio_charset_in" id="set_in_charset_gb2312" />GB2312
-                </label>
+                <span id="outencode"></span>
             </div>
+        </div>
+        <div id="op-bar">
         </div>
         <hr/>
         <div id="setup-box">
@@ -58,7 +54,7 @@
 --&gt;</pre>
                         <ol>
                             <li>utf-8：输出编码，如果要使用跟文件一样的编码输出，可以不加</li>
-                            <li>autosave:：启用自动保存文件</li>
+                            <li>AUTOSAVE:：启用自动保存文件</li>
                             <li>CONDITION:：启用数据筛选</li>
                         </ol>
                         <p>
@@ -81,7 +77,7 @@
 --&gt;</pre>
                         <dl>
                             <dt>savedir</dt>
-                            <dd>输出文件路径</dd>
+                            <dd>输出文件路径(注意路径的正确性，错误的话有可能存到不知道什么地方去 ||-_-)</dd>
                         </dl>
                         <h3>当前支持的变量类型</h3>
                         <dl>
@@ -136,9 +132,9 @@
                         <dl>
                             <dt>创建数据文件</dt>
                             <dd>使用excel建立数据文件，第一行为变量名。然后导出为txt格式文件，与模板文件放在同个目录下。导出的内容类似：</dd>
-                            <dd><pre>valueA	valueB	valueC
-A1	A2	A3
-B1	B2	B3</pre>
+                            <dd><pre>valueA valueB  valueC
+A1  A2  A3
+B1  B2  B3</pre>
                             </dd>
                             <dt>链接数据文件</dt>
                             <dd>在循环定义设置变量『DB』,变量类型为『set』,</dd>
@@ -170,11 +166,12 @@ B1	B2	B3</pre>
                         <h3>数据筛选</h3>
                         <dl>
                             <dt>创建数据文件</dt>
+                            <dd>在全局设置中打开数据筛选功能 <em>CONDITION</em></dd>
                             <dd>使用excel建立数据文件，第一行为变量名。然后导出为txt格式文件，与模板文件放在同个目录下。导出的内容类似：</dd>
-                            <dd><pre>valueA	valueB	valueC
-A1	B1	C1
-A2	B1	C2
-A3	B3	C2</pre>
+                            <dd><pre>valueA valueB  valueC
+A1  B1  C1
+A2  B1  C2
+A3  B3  C2</pre>
                             </dd>
                             <dt>链接数据文件，设置筛选条件</dt>
                             <dd>在循环定义设置变量『DB』,变量类型为『set』,</dd>
@@ -238,8 +235,6 @@ logo:  // logo图片  logo=图片地址</pre></dd>
                     </div>
                 </div>
             </form>
-        </div>
-        <div id="op-bar">
         </div>
     </div>
 </body>
