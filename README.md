@@ -5,7 +5,7 @@
 ## 安装说明
 
 1. 先安装[Adobe Air](https://airsdk.harman.com/runtime)运行环境
-2. 下载安装最新版的[bg2css.air](https://github.com/ghostzhang/TIDemo/releases)
+2. 下载安装最新版的[TIDemo](https://github.com/ghostzhang/TIDemo/releases)
 
 ## 基本功能
 
